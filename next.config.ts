@@ -1,29 +1,13 @@
 import type { NextConfig } from 'next';
 
+// Static export for GitHub Pages (https://charankav.github.io/history)
 const nextConfig: NextConfig = {
+  output: 'export',
+  basePath: '/history',
+  trailingSlash: true,
   reactStrictMode: true,
   poweredByHeader: false,
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'upload.wikimedia.org',
-        pathname: '/wikipedia/commons/**',
-      },
-    ],
-  },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'X-Frame-Options', value: 'DENY' },
-          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-        ],
-      },
-    ];
-  },
+  images: { unoptimized: true },
 };
 
 export default nextConfig;
